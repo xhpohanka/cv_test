@@ -1,0 +1,30 @@
+diff --git a/src/civetweb.c b/src/civetweb.c
+index 909a93a9..f7da7ae4 100644
+--- a/src/civetweb.c
++++ b/src/civetweb.c
+@@ -20,6 +20,8 @@
+  * THE SOFTWARE.
+  */
+ 
++#define DEBUG
++
+ #if defined(__GNUC__) || defined(__MINGW32__)
+ #define GCC_VERSION                                                            \
+ 	(__GNUC__ * 10000 + __GNUC_MINOR__ * 100 + __GNUC_PATCHLEVEL__)
+@@ -186,7 +188,7 @@ mg_static_assert(sizeof(void *) >= sizeof(int), "data type size check");
+ #if defined(USE_STACK_SIZE) && (USE_STACK_SIZE > 1)
+ #define ZEPHYR_STACK_SIZE USE_STACK_SIZE
+ #else
+-#define ZEPHYR_STACK_SIZE 8096
++#define ZEPHYR_STACK_SIZE (32*1024)
+ #endif
+ 
+ K_THREAD_STACK_DEFINE(civetweb_main_stack, ZEPHYR_STACK_SIZE);
+@@ -18097,6 +18099,7 @@ accept_new_connection(const struct socket *listener, struct mg_context *ctx)
+ 
+ 	if ((so.sock = accept(listener->sock, &so.rsa.sa, &len))
+ 	    == INVALID_SOCKET) {
++		k_sleep(K_MSEC(5));
+ 	} else if (!check_acl(ctx, ntohl(*(uint32_t *)&so.rsa.sin.sin_addr))) {
+ 		sockaddr_to_string(src_addr, sizeof(src_addr), &so.rsa);
+ 		mg_cry_ctx_internal(ctx,
