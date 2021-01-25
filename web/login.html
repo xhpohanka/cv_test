@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>zephyr test</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel=stylesheet href=style.css media=all type=text/css>
+
+        <script src="jquery-3.5.1.min.js"></script>
+        <script src="js.cookie-2.2.1.min.js"></script>
+        <script src="sha1.min.js"></script>
+
+    </head>
+    <body>
+
+        <div id="dimScreen">       
+            <div class="lds-ring" id="loadingCircle"><div></div><div></div><div></div><div></div></div>
+        </div> 
+        <div id="container" class="blur">
+            <div id="header">
+
+                <div id="logo">
+                    <img src="logo.png" alt="zephyr"/>
+                </div>
+            </div>
+
+            <div id="content" class="hidden">
+                <div class="form">
+                    <form id="loginForm" method="POST" class="login-form">
+                        <input type="password" id="inputLoginPassword" name="password" placeholder="Password" required="required"/>
+                        <button id="buttonLogin">Login</button>
+                    </form>
+
+                </div>
+            </div>
+            <div id="footer" class="hidden" style="margin-top: 60px;">
+                <p class="footer-left">Language/Sprache:
+                    <select name="selectLanguage" id="selectLanguage">
+                        <option value="en">English</option>
+                        <option value="de">Deutsch</option>
+                    </select>
+                </p>
+                <p class="footer-right">&copy; <a href="http://zephyr.test" target="_blank">zephyr</a></p>
+
+            </div>
+        </div>
+
+        <script type="text/javascript" src="login.js"></script>
+
+        <noscript>
+        <div>
+            <img src="logo.png" alt="zephyr"/>
+            <p>JavaScript must be enabled to view this website. Please enable JavaScript and reload the page.<br>
+                Zum Anzeigen dieser Website muss JavaScript aktiviert sein. Bitte aktivieren Sie JavaScript und laden Sie die Seite neu.</p>
+        </div>
+        </noscript>
+    </body>
+</html>
