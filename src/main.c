@@ -198,10 +198,8 @@ static void *civetweb_init(void *arg)
             "num_threads",
             "1",
             "max_request_size",
-            "4096",
-            "enable_keep_alive",
-            "yes",
-            "keep_alive_timeout_ms",
+            "1024",
+            "request_timeout_ms",
             "1000",
             0
     };
