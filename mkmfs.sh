@@ -30,11 +30,7 @@ logo.png
 files=$(echo "$files" | sort)
 
 for f in $files; do
-	if ! (echo "$f" | grep -q "\.min") && ! (file --mime "$DIR/$f" | grep -q "charset=binary"); then
-		minify -o $TDIR/$f $DIR/$f
-	else
-		cp $DIR/$f $TDIR
-	fi
+	cp $DIR/$f $TDIR
 
 	case "$f" in
 	*.png | *.json )
