@@ -276,12 +276,4 @@ int fflush(FILE *stream)
 	return 0;
 }
 
-int putc(int c, FILE *stream)
-{
-	return zephyr_fputc(c, stream);
-}
 
-int putchar(int c)
-{
-	return zephyr_fputc(c, stdout);
-}
