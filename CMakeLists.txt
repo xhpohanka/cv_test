@@ -34,7 +34,7 @@ add_custom_command(
   COMMAND
   bash
   mkmfs.sh > ${mfs_file}
-  DEPENDS ${web_sources}
+  DEPENDS ${web_sources} mkmfs.sh
   WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )
 add_custom_target(mfs_file DEPENDS ${mfs_file})
