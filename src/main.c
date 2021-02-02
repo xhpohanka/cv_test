@@ -41,9 +41,9 @@ static int send_file(struct mg_connection *conn, struct mfs_file *mfs_file, int 
             retries = 5;
         }
         else {
-            LOG_DBG("ferr %d %d", sent, errno);
+            k_sleep(K_MSEC(20));
             if (retries-- <= 0) {
-                LOG_ERR("file sending error");
+                LOG_ERR("file %s sending error %d", log_strdup(mfs_file->fileItem->fileName), errno);
                 return -1;
             }
         }
@@ -73,7 +73,7 @@ int file_handler(struct mg_connection *conn, void *cbdata)
     file_size = mfs_open(requestFile, &mfs_file);
 
     if (file_size == -1) {
-        LOG_ERR("cannot open %s", requestFile);
+        LOG_ERR("cannot open %s", log_strdup(requestFile));
         mg_printf(conn, "HTTP/1.1 404 Not Found\r\n"
                 "Connection: close\r\n\r\n");
         return 404;
@@ -196,7 +196,7 @@ static void *civetweb_init(void *arg)
             "listening_ports",
             "80,443s",
             "num_threads",
-            "1",
+            "4",
             "max_request_size",
             "1024",
             "request_timeout_ms",
